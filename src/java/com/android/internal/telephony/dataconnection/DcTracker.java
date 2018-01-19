@@ -503,7 +503,7 @@ public class DcTracker extends Handler {
         String apnType = apnContextforRetry.getApnType();
         String reason =  apnContextforRetry.getReason();
 
-        if (!SubscriptionManager.isValidSubscriptionId(subId) || (subId != phoneSubId)) {
+        if ((subId != phoneSubId)) {
             log("onDataReconnect: invalid subId");
             return;
         }
