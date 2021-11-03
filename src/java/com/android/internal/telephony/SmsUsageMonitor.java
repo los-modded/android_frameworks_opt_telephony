@@ -603,8 +603,7 @@ public class SmsUsageMonitor {
     }
 
     public boolean isSmsAuthorizationEnabled() {
-        return mContext.getResources().getBoolean(
-                com.android.internal.R.bool.config_sms_authorization_enabled);
+        return false;
     }
 
     private void checkCallerIsSystemOrPhoneOrSameApp(String pkg) {

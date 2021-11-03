@@ -314,7 +314,7 @@ public class PhoneSwitcher extends Handler {
     private ConnectivityManager mConnectivityManager;
     private int mImsRegistrationTech = REGISTRATION_TECH_NONE;
 
-    private List<Set<CommandException.Error>> mCurrentDdsSwitchFailure;
+    protected List<Set<CommandException.Error>> mCurrentDdsSwitchFailure;
 
     private class DefaultNetworkCallback extends ConnectivityManager.NetworkCallback {
         public int mExpectedSubId = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
