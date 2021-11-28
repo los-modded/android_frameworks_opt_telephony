@@ -323,6 +323,10 @@ public class MultiSimSettingController extends Handler {
         // Make sure MOBILE_DATA of subscriptions in same group are synced.
         setUserDataEnabledForGroup(subId, enable);
 
+        //Skip setting DDS if this config is set
+        if (mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_voice_data_sms_auto_fallback)) return;
+
         // If user is enabling a non-default non-opportunistic subscription, make it default.
         if (mSubController.getDefaultDataSubId() != subId && !mSubController.isOpportunistic(subId)
                 && enable && mSubController.isActiveSubId(subId)) {
@@ -782,7 +786,8 @@ public class MultiSimSettingController extends Handler {
     }
 
     protected void disableDataForNonDefaultNonOpportunisticSubscriptions() {
-        if (!isReadyToReevaluate()) return;
+        if (!isReadyToReevaluate() || mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_voice_data_sms_auto_fallback)) return;
 
         int defaultDataSub = mSubController.getDefaultDataSubId();
 

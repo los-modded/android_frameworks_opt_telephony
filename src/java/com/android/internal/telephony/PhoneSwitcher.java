@@ -101,7 +101,7 @@ public class PhoneSwitcher extends Handler {
     protected static final boolean VDBG = false;
 
     private static final int DEFAULT_NETWORK_CHANGE_TIMEOUT_MS = 5000;
-    private static final int MODEM_COMMAND_RETRY_PERIOD_MS     = 5000;
+    protected static final int MODEM_COMMAND_RETRY_PERIOD_MS     = 5000;
     // After the emergency call ends, wait for a few seconds to see if we enter ECBM before starting
     // the countdown to remove the emergency DDS override.
     @VisibleForTesting
@@ -268,7 +268,7 @@ public class PhoneSwitcher extends Handler {
     private static final int EVENT_NETWORK_VALIDATION_DONE        = 110;
     private static final int EVENT_REMOVE_DEFAULT_NETWORK_CHANGE_CALLBACK = 111;
     private static final int EVENT_MODEM_COMMAND_DONE             = 112;
-    private static final int EVENT_MODEM_COMMAND_RETRY            = 113;
+    protected static final int EVENT_MODEM_COMMAND_RETRY            = 113;
     @VisibleForTesting
     public static final int EVENT_DATA_ENABLED_CHANGED            = 114;
     // An emergency call is about to be originated and requires the DDS to be overridden.
@@ -571,7 +571,7 @@ public class PhoneSwitcher extends Handler {
         }
     };
 
-    private boolean isSimApplicationReady(int slotIndex) {
+    protected boolean isSimApplicationReady(int slotIndex) {
         if (!SubscriptionManager.isValidSlotIndex(slotIndex)) {
             return false;
         }
@@ -1680,7 +1680,7 @@ public class PhoneSwitcher extends Handler {
         pw.decreaseIndent();
     }
 
-    private boolean isAnyVoiceCallActiveOnDevice() {
+    protected boolean isAnyVoiceCallActiveOnDevice() {
         boolean ret = mPhoneIdInVoiceCall != SubscriptionManager.INVALID_PHONE_INDEX;
         log("isAnyVoiceCallActiveOnDevice: " + ret);
         return ret;
